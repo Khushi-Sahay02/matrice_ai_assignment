@@ -49,8 +49,13 @@ func auth() azblob.ContainerURL {
 }
 
 func connectMongoDB() *mongo.Collection {
+	err := godotenv.Load("local.env")
+	if err != nil {
+		log.Fatalf("Some error occured. Err: %s", err)
+	}
+	mongoDBUri := os.Getenv("URI")
 	// Replace with your MongoDB Atlas connection string
-	uri := "mongodb+srv://sahaykhushi350:Khushi123@cluster0.9njbln9.mongodb.net/?retryWrites=true&w=majority"
+	uri := mongoDBUri
 
 	// Create a client
 	client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI(uri))
