@@ -1,2 +1,4 @@
-# ignore ALL .log files
-*.env
+# .gitignore
+
+# Ignore local environment file
+local.env
